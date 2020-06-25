@@ -1,0 +1,26 @@
+public static Node bulidTreeArray(char[] inorder,char[] postorder) {
+        if(inorder.length == 0) {
+            return null;
+        }
+
+        char rootValue = postorder[postorder.length - 1];
+        int leftCount = -1;
+        for (int i = 0; i < inorder.length ; i++) {
+            if(inorder[i] == rootValue) {
+                leftCount = i;
+            }
+        }
+        Node root = new Node(rootValue);
+
+        char[] leftinorder = Arrays.copyOfRange(inorder,0,leftCount);
+        char[] leftpostorder = Arrays.copyOfRange(inorder,0,leftCount);
+        Node left = bulidTreeArray(leftinorder,leftpostorder);
+        root.left = left;
+
+        char[] rightinorder = Arrays.copyOfRange(inorder,leftCount+1,inorder.length);
+        char[] righrpostorder = Arrays.copyOfRange(postorder,leftCount,postorder.length -1);
+        Node right = bulidTreeArray(rightinorder,righrpostorder);
+        root.right = right;
+
+        return root;
+    }
