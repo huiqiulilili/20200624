@@ -1,0 +1,63 @@
+import java.util.Scanner;
+class Node {
+    Node left;
+    Node right;
+    char ch;
+    Node(char ch) {
+        this.ch = ch;
+    }
+}
+ class ReturnValue{
+    Node root;
+    int used;
+}
+public class Main{
+    public static ReturnValue function(String preorder) {
+    if(preorder.length() == 0) {
+        ReturnValue rv = new ReturnValue();
+        rv.root = null;
+        rv.used = 0;
+        return rv;
+    }
+    char rootValue = preorder.charAt(0);
+    if(rootValue == '#') {
+        ReturnValue rv = new ReturnValue();
+        rv.root = null;
+        rv.used = 1;
+        return rv;
+    }
+    Node root = new Node(rootValue);
+    
+    ReturnValue leftRV = function(preorder.substring(1,preorder.length()));
+    root.left = leftRV.root;
+    ReturnValue rightRV = function(preorder.substring(1+leftRV.used,preorder.length()));
+    root.right = rightRV.root;
+    
+    ReturnValue rv = new ReturnValue();
+    rv.root = root;
+    rv.used = 1 + leftRV.used + rightRV.used;
+    
+    return rv;
+}
+
+public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNext()){
+            String str = in.next();
+            Node head = function(str).root;
+            LNRTranversal(head);
+            System.out.println();
+        }
+        in.close();
+    }
+ private static void LNRTranversal(Node root) {
+        if(root==null)
+            return;   
+        LNRTranversal(root.left);
+        System.out.print(root.ch+" ");
+        LNRTranversal(root.right);
+    }
+}
+
+
+
