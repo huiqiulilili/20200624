@@ -1,0 +1,20 @@
+public static Node bulidTree2(List<Character> inorder,List<Character> postorder) {
+        if(inorder.size() == 0) {
+            return null;
+        }
+        char rootValue = postorder.get(postorder.size() - 1);
+        int leftCount = inorder.indexOf(rootValue);
+        Node root = new Node(rootValue);
+
+        List<Character> leftInoder = inorder.subList(0,leftCount);
+        List<Character> leftpostorder = postorder.subList(0,leftCount);
+        Node left = bulidTree2(leftInoder,leftpostorder);
+        root.left  = left;
+
+        List<Character> rightinorder = inorder.subList(leftCount+1,inorder.size());
+        List<Character> rightpostorder = postorder.subList(leftCount,postorder.size() - 1);
+        Node right = bulidTree2(rightinorder,rightpostorder);
+        root.right = right;
+
+        return root;
+    }
