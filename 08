@@ -1,0 +1,15 @@
+private static void heapify(int[] array, int size, int index) {
+        while (true) {
+            int left = 2 * index + 1;
+            if(left >= size) {return;}
+            int max = left;
+            if(left + 1 < size) {
+                if(array[left] < array[left + 1]) {
+                    max = left + 1;
+                }
+            }
+            if(array[max] <= array[index]){return;}
+            swap(array,max,index);
+            index = max;
+        }
+    }
