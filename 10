@@ -1,0 +1,72 @@
+package compare和comparable;
+
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
+class Person implements Comparable<Person>{
+    String name;
+    int age;
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        if(this.age != o.age) {
+            return this.age - o.age;
+        }
+        return this.name.compareTo(o.name);
+    }
+}
+public class Test {
+    public static void test1() {
+        List<Person> list = new LinkedList<>();
+        Person p1 = new Person("1",24);
+        Person p2 = new Person("4",11);
+        Person p3 = new Person("3",76);
+        Person p4 = new Person("2",11);
+        Person p5 = new Person("5",13);
+        list.add(p1);
+        list.add(p2);
+        list.add(p3);
+        list.add(p4);
+        list.add(p5);
+        System.out.println(list);
+        System.out.println("=========================");
+        Collections.sort(list);
+        System.out.println(list);
+    }
+
+    public static void main(String[] args) {
+        test1();
+    }
+}
