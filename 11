@@ -1,0 +1,70 @@
+package compare和comparable;
+
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
+
+class Studnet{
+    String sname;
+    int age;
+
+    @Override
+    public String toString() {
+        return "Studnet{" +
+                "sname='" + sname + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
+    public String getSname() {
+        return sname;
+    }
+
+    public void setSname(String sname) {
+        this.sname = sname;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Studnet(String sname, int age) {
+        this.sname = sname;
+        this.age = age;
+    }
+}
+public class Test2 {
+
+    public static void main(String[] args) {
+        List<Studnet> list = new LinkedList<>();
+        Studnet p1 = new Studnet("1",24);
+        Studnet p2 = new Studnet("4",11);
+        Studnet p3 = new Studnet("3",76);
+        Studnet p4 = new Studnet("2",11);
+        Studnet p5 = new Studnet("5",13);
+        list.add(p1);
+        list.add(p2);
+        list.add(p3);
+        list.add(p4);
+        list.add(p5);
+        System.out.println(list);
+        System.out.println("===================");
+        Collections.sort(list, new Comparator<Studnet>() {
+            @Override
+            public int compare(Studnet o1, Studnet o2) {
+                if(o1.getAge() != o2.getAge()) {
+                    return o1.getAge() - o2.getAge();
+                }
+                return o1.getSname().compareTo(o2.getSname());
+            }
+        });
+        System.out.println(list);
+    }
+
+}
