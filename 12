@@ -1,0 +1,15 @@
+private static void insertSort(int[] array, int gap) {
+        for (int i = 0; i < array.length - gap ; i++) {
+            int key = array[i + 1];
+
+            int j;
+            for ( j = i; j >= 0 ; j--) {
+                if(array[i] <= key) {
+                    break;
+                }else {
+                    array[j + 1] = array[j];
+                }
+            }
+            array[j + 1] = key;
+        }
+    }
