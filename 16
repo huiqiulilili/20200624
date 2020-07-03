@@ -1,0 +1,50 @@
+package 栈和队列;
+class Node {
+    int val;
+    Node next;
+
+    Node(int val){
+        this.val = val;
+    }
+}
+public class MyQueue {
+    private Node front = null;
+    private Node rear = null;
+    int size = 0;
+
+    public void push(int element) {
+        Node node = new Node(element);
+        size++;
+        if(rear == null) {
+            rear = front = node;
+        }else {
+            rear.next = node;
+            rear = node;
+        }
+    }
+
+    public int pop() {
+        int element = front.val;
+        if(front == null) {
+            return -1;
+        }
+        front = front.next;
+        return element;
+    }
+
+    public int rear() {
+        return rear.val;
+    }
+
+    public int front() {
+        return front.val;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+}
