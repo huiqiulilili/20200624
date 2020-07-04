@@ -1,0 +1,51 @@
+import java.util.Arrays;
+
+public class Test {
+    // 插入排序  稳定
+    public static void insertSort(int[] array) {
+        for (int i = 0;i < array.length - 1;i ++) {
+            int key = array[i + 1];
+            int j;
+            for ( j = i; j >= 0 ; j--) {
+                if(array[j] >= key) {
+                    array[j + 1] = array[j];
+                }else {
+                    break;
+                }
+            }
+            array[j + 1] = key;
+        }
+    }
+
+    // 冒泡排序 稳定
+    public static void bubbleSort(int[] array) {
+        for (int i = 0; i < array.length  - 1; i++) {
+            boolean flag = true;
+            for (int j = 0; j < array.length - i - 1 ; j++) {
+                if(array[j] > array[j + 1]) {
+                    swap(array,j,j + 1);
+
+                    flag = false;
+                }
+            }
+            if(false == true) {
+                break;
+            }
+        }
+    }
+
+    private static void swap(int[] array, int j, int i) {
+        int t = array[i];
+        array[i] = array[j];
+        array[j] = t;
+    }
+
+    public static void main(String[] args) {
+        int[] array = {5,4,3,2,1,6,3};
+
+//        insertSort(array);
+        bubbleSort(array);
+        System.out.println(Arrays.toString(array));
+    }
+
+}
