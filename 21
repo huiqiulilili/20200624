@@ -1,0 +1,69 @@
+package 牛客;
+
+import java.util.Scanner;
+
+public class Test2 {
+   /* public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            String a = sc.nextLine();
+            String b = sc.nextLine();
+            int count = 0;
+            for (int i = 0; i < a.length() ; i++) {
+                String news = a.substring(0,i)+ b + a.substring(i);
+                if(is(news)) {
+                    count++;
+                }
+            }
+            if(is(b+a)) {
+                count++;
+            }
+            if(is(a+b)) {
+                count++;
+            }
+            System.out.println(count);
+        }
+    }
+
+    private static boolean is(String s) {
+        StringBuilder sb = new StringBuilder(s);
+        String news = sb.reverse().toString();
+        for (int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) != news.charAt(i)) {
+                return false;
+            }
+        }
+        return true;
+    }*/
+
+
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            String a = sc.nextLine();
+            String b = sc.nextLine();
+            int count = 0;
+
+            for (int i = 0; i <= a.length(); i++) {
+                StringBuilder sbA = new StringBuilder(a);
+                String ss = sbA.insert(i,b).toString();
+                if(is(ss)) {
+                    count++;
+                }
+            }
+            System.out.println(count);
+        }
+    }
+
+    private static boolean is(String s) {
+        StringBuilder sb = new StringBuilder(s);
+        String news = sb.reverse().toString();
+        for (int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) != news.charAt(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
