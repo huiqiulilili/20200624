@@ -1,0 +1,43 @@
+package 牛客;
+
+
+import java.util.Scanner;
+
+public class Main11 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            String s = sc.nextLine();
+            char[] chars = s.toCharArray();
+            String result = "";
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < s.length() ; i++) {
+                if(chars[i] >= '0' && chars[i] <= '9') {
+                    sb.append(chars[i]);
+                }else {
+                    sb.setLength(0);
+                }
+                if(sb.length() > result.length()) {
+                    result = sb.toString();
+                }
+            }
+            System.out.println(result);
+
+        }
+    }
+
+    /*public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        String[] arr = s.split("[\\D]+");
+        String result="";
+        int max = 0;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i].length()>max){
+                max=arr[i].length();
+                result = arr[i];
+            }
+        }
+        System.out.println(result);
+    }*/
+}
