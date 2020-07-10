@@ -1,0 +1,31 @@
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+public class TestGson {
+    static class Hero {
+        public String name;
+        public String sjill1;
+        public String sjill2;
+        public String sjill3;
+        public String sjill4;
+
+    }
+    public static void main(String[] args) {
+        // 把对象构造成 json 格式的字符串
+        // 把 json 格式的字符串转换成对象
+        Hero hero = new Hero();
+        hero.name = "曹操";
+        hero.sjill1 = "三段跳";
+        hero.sjill2 = "剑气";
+        hero.sjill3 = "加攻击";
+        hero.sjill4 = "加速度";
+
+        Gson gson = new GsonBuilder().create();
+        String jsonString = gson.toJson(hero);
+//        System.out.println(jsonString);
+
+
+        Hero hero1 = gson.fromJson(jsonString,Hero.class);
+        System.out.println(hero1.name);
+    }
+}
