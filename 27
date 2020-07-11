@@ -1,0 +1,70 @@
+package 集合.test4;
+
+
+import java.util.Comparator;
+import java.util.Map;
+import java.util.TreeMap;
+
+public class Test {
+    static class Studnet {
+        private String name;
+        private int age;
+
+        public Studnet(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        public void setAge(int age) {
+            this.age = age;
+        }
+
+        @Override
+        public String toString() {
+            return "Studnet{" +
+                    "name='" + name + '\'' +
+                    ", age=" + age +
+                    '}';
+        }
+    }
+
+    public static void main(String[] args) {
+        Map<Studnet,Integer> map = new TreeMap<>(new Comparator<Studnet>() {
+            @Override
+            public int compare(Studnet o1, Studnet o2) {
+                int num = o1.age - o2.age;
+                return num == 0 ? o1.name.compareTo(o2.name) : num;
+            }
+        });
+
+        Studnet s1 = new Studnet("f",1);
+        Studnet s2 = new Studnet("b",2);
+        Studnet s3 = new Studnet("c",3);
+        Studnet s4 = new Studnet("d",4);
+        Studnet s5 = new Studnet("e",1);
+
+        map.put(s1,1);
+        map.put(s2,2);
+        map.put(s3,3);
+        map.put(s4,4);
+        map.put(s5,5);
+
+        for (Map.Entry<Studnet,Integer> m : map.entrySet()) {
+            System.out.println(m.getKey() + "===>" + m.getValue());
+        }
+    }
+
+
+}
