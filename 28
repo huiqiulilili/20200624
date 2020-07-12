@@ -1,0 +1,26 @@
+package 集合.test5;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+public class Test {
+    public int singleNumber(int[] nums) {
+        Map<Integer,Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length ; i++) {
+            if(!map.containsKey(nums[i])) {
+                map.put(nums[i],1);
+            }else {
+                int num = map.get(nums[i]);
+                map.put(nums[i],num + 1);
+            }
+        }
+        Set<Integer> set = map.keySet();
+        for (Integer i : set) {
+            if(map.get(i) == 1) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
