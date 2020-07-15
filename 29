@@ -1,0 +1,42 @@
+package 牛客;
+
+import java.util.Scanner;
+
+
+public class Test9 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            int n = sc.nextInt();
+            int m = sc.nextInt();
+
+            int result = n * m / function2(n,m);
+            /*for (int i = result - 1; i >= 1 ; i--) {
+                if(function(i,n,m)) {
+                    result = i;
+                }
+            }*/
+
+
+            System.out.println(result);
+        }
+    }
+
+    private static boolean function(int num,int n,int m) {
+        if(num % n == 0 && num % m == 0) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+
+    private static int function2(int n,int m) {
+        for (int i = 2; i < n * m ; i++) {
+            if(n % i == 0 && m % i == 0) {
+                return i;
+            }
+        }
+        return 1;
+    }
+}
