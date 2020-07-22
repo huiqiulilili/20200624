@@ -1,0 +1,11 @@
+package test;
+
+import java.util.*;
+
+public class Test8 {
+    public static void main(String[] args) {
+            int[] array = {5,4,3,2,1};
+            Arrays.sort(array);
+            System.out.println(Arrays.toString(array));
+    }
+}
