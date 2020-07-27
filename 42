@@ -1,0 +1,44 @@
+public class Solution {
+    //1、状态定义：f(i):以 i 为结尾的最大连续子序列的和（必须包含i下标对应的元素）
+    //2、转移方程：f(i) = max(f(i - 1) + array[i], array[i])
+    //3、初始化：f(0) = arrray[0];
+    // 确立容器：dp[n]
+    public int FindGreatestSumOfSubArray(int[] array) {
+       /* if(array == null || array.length == 0) {
+            return 0;
+        }
+        
+        int[] dp = new int[array.length];
+        int max = array[0];
+        dp[0] = array[0];
+        
+        for(int i = 1;i < array.length;i ++) {
+            dp[i] = Math.max(dp[i - 1] + array[i],array[i]);
+            if(max < dp[i]) {
+                max = dp[i];
+            }
+        }
+        return max;*/
+        
+        
+        if(array == null || array.length == 0) {
+            return 0;
+        }
+        
+        int total = array[0];
+        int max = array[0];
+        
+        for(int i = 1;i < array.length;i ++) {
+            if(total > 0) {
+                total += array[i];
+            }else {
+                total = array[i];
+            }
+            
+            if(max < total) {
+                max = total;
+            }
+        }
+        return max;
+    }
+}
