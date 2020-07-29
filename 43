@@ -1,0 +1,138 @@
+package 链表ListNode;
+
+public class Test36 {
+    public ListNode mergeTwoLists(ListNode head1, ListNode head2) {
+        if(head1 == null) {
+            return head2;
+        }
+        if (head2 == null) {
+            return head1;
+        }
+
+        ListNode result = null;
+        ListNode cur = null;
+
+        ListNode cur1 = head1;
+        ListNode cur2 = head2;
+
+        while(cur1 != null && cur2 != null) {
+            if(cur1.val < cur2.val) {
+                if(result == null) {
+                    result = cur1;
+                    cur = cur1;
+                }else {
+                    cur.next = cur1;
+                    cur = cur.next;
+                }
+                cur1 = cur1.next;
+            }else {
+                if(result == null) {
+                    result = cur2;
+                    cur = cur2;
+                }else {
+                    cur.next = cur2;
+                    cur = cur.next;
+                }
+                cur2 = cur2.next;
+            }
+        }
+
+        if(cur1 == null) {
+            cur.next = cur2;
+        }
+        if(cur2 == null) {
+            cur.next = cur1;
+        }
+        return result;
+    }
+
+    public ListNode reverseList(ListNode head) {
+        if(head == null) {
+            return null;
+        }
+
+        ListNode newList = null;
+        ListNode cur = head;
+
+        while(cur != null) {
+            ListNode node = cur.next;
+            cur.next = newList;
+            newList = cur;
+            cur = node;
+        }
+        return newList;
+    }
+
+
+    // 移除 val
+    public ListNode removeElements(ListNode head, int val) {
+        if(head == null) {
+            return null;
+        }
+
+        ListNode p1 = head;
+        ListNode p2 = head;
+
+        while(p1 != null && p2 != null) {
+            if(p1.val != val) {
+                p2 = p1;
+                p1 = p1.next;
+            }else {
+                p2.next = p1.next;
+                p1 = p1.next;
+            }
+        }
+        if(head.val == val) {
+            return head.next;
+        }
+        return head;
+    }
+
+    public ListNode partition(ListNode pHead, int x) {
+        if(pHead == null) {
+            return null;
+        }
+
+        ListNode big = null;
+        ListNode bigCur = null;
+        ListNode small = null;
+        ListNode smallCur = null;
+
+        while(pHead != null) {
+            if(pHead.val < x) {
+                if(small == null) {
+                    small = pHead;
+                    smallCur = small;
+                }else {
+                    smallCur.next = pHead;
+                    smallCur = pHead;
+                }
+                pHead = pHead.next;
+            }else {
+                if(big == null) {
+                    big = pHead;
+                    bigCur = big;
+                }else {
+                    bigCur.next = pHead;
+                    bigCur = pHead;
+                }
+                pHead = pHead.next;
+            }
+        }
+
+        if(small != null) {
+            smallCur.next = big;
+            if (bigCur != null) {
+                bigCur.next = null;
+            }
+        }else {
+            return big;
+        }
+        return small;
+    }
+
+    public ListNode deleteDuplication(ListNode head){
+        
+        
+    }
+}
