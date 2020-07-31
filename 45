@@ -1,0 +1,55 @@
+package 普通;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+public class Test22 {
+    public static void main(String[] args) {
+
+
+    }
+
+    public int FindGreatestSumOfSubArray(int[] array) {
+        int tatal = array[0];
+        int max = array[0];
+
+        for (int i = 0; i < array.length ; i++) {
+            if(tatal > 0) {
+                tatal+= array[i];
+            }else {
+                tatal = array[i];
+            }
+
+        }
+        if(max < tatal) {
+            max = tatal;
+        }
+        return max;
+    }
+
+    public String PrintMinNumber(int [] numbers) {
+        if (numbers.length == 0 || numbers == null) {
+            return "";
+        }
+
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int e : numbers) {
+            list.add(e);
+        }
+
+        Collections.sort(list, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer x, Integer y) {
+                String xs = x + "" + y;
+                String ys = y + "" + x;
+                return xs.compareTo(ys);
+            }
+        });
+        String result = new String();
+        for (Integer e : list) {
+            result += e;
+        }
+        return result;
+    }
+}
