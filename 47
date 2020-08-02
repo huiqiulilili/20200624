@@ -1,0 +1,40 @@
+import java.util.*;
+
+
+public class Solution {
+    /**
+     * 
+     * @param s string字符串 
+     * @return int整型
+     */
+    public int minCut (String s) {
+        // write code here
+        int len = s.length();
+        if(len == 0) {
+            return 0;
+        }
+        
+        int[] minCut = new int[len + 1];
+        for(int i = 0;i <= len;i ++) {
+            minCut[i] = i - 1;
+        }
+        
+        for(int i = 0;i <= len;i ++) {
+            for(int j = 0;j < i;j ++) {
+                if(isPal(s,j,i - 1)) {
+                    minCut[i] = Math.min(minCut[i],minCut[j]+1);
+                }
+            }
+        }
+        return minCut[len];
+    }
+    public boolean isPal(String s, int start, int end){
+        while(start < end){
+            if(s.charAt(start) != s.charAt(end))
+                return false;
+            ++start;
+            --end;
+        }
+        return true;
+}
+}
