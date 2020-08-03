@@ -1,0 +1,42 @@
+import java.util.*;
+
+
+public class Solution {
+    /**
+     * 
+     * @param word1 string字符串 
+     * @param word2 string字符串 
+     * @return int整型
+     */
+    public int minDistance (String word1, String word2) {
+        // write code here
+        int row = word1.length();
+        int col = word2.length();
+        int[][] minDis = new int[row + 1][col + 1];
+        
+        // F(0,j):j
+        // F(i,0):i
+        for(int i = 0;i <= row;i ++) {
+            minDis[i][0] = i;
+        }
+        for(int i = 0;i <= col;i ++) {
+            minDis[0][i] = i;
+        }
+        
+        for(int i = 1;i <= row;i ++) {
+            for(int j = 1;j <= col;j ++) {
+                // 插入、删除
+                minDis[i][j] = Math.min(minDis[i][j - 1],minDis[i - 1][j]) + 1;
+                // 替换
+                if(word1.charAt(i  - 1) == word2.charAt(j - 1)) {
+                    // 相等，，F(i-1,j-1)编辑距离不变
+                    minDis[i][j] = Math.min(minDis[i][j],minDis[i - 1][j - 1]);
+                }else {
+                    // 不相等，F(i-1,j-1)编辑距离 + 1
+                    minDis[i][j] = Math.min(minDis[i][j],minDis[i - 1][j - 1]+1);
+                }
+            }
+        }
+        return minDis[row][col];
+    }
+}
