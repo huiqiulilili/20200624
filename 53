@@ -1,0 +1,27 @@
+public static void f4(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] array = new int[n];
+        for (int i = 0; i < n ; i++) {
+            array[i] = sc.nextInt();
+        }
+
+        int first = array[0];
+        int second = Integer.MAX_VALUE;
+        boolean falg = false;
+        for (int i = 1; i < n ; i++) {
+            if(array[i] < first) {
+                first++;
+                second = Integer.MAX_VALUE;
+            }else  if(array[i] > first && array[i] < second) {
+                second = array[i];
+            }else if(array[i] > first && array[i] > array[second]) {
+                System.out.println("true");
+                falg = true;
+                break;
+            }
+        }
+        if(!falg) {
+            System.out.println("false");
+        }
+    }
