@@ -1,0 +1,23 @@
+private static int find(WorkflowNode node) {
+        if(node == null) {
+            return 0;
+        }
+
+        int time = 0;
+        Queue<WorkflowNode> queue = new LinkedList<>();
+        queue.offer(node);
+        while (!queue.isEmpty()) {
+
+            WorkflowNode tmp = queue.poll();
+            List<WorkflowNode> r = tmp.nextNodes;
+            for (int i = 0; i < r.size() ; i++) {
+                queue.offer(r.get(i));
+                if(r.get(i).nextNodes == null) {
+                    continue;
+                }else {
+                    time = Math.max(time,time + find(r.get(i)));
+                }
+            }
+        }
+        return time;
+    }
