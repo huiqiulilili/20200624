@@ -1,0 +1,46 @@
+public static void quickSort(int[] array) {
+        quickSortInternal(array,0,array.length - 1);
+    }
+
+    private static void quickSortInternal(int[] array, int left, int right) {
+        if(left >= right) {
+            return;
+        }
+        // 1、确定基准值，array[right] 作为基准值
+        // 2、遍历，小的左，大的右
+        int index = getIndex(array,left,right);
+        quickSortInternal(array,left,index - 1);
+        quickSortInternal(array,index + 1,right);
+    }
+
+    private static int getIndex(int[] array, int left, int right) {
+        int less = left;
+        int great = right;
+        int pivot = array[less];
+
+        while (less < great) {
+
+            //由后向前找比他小的数，找到后挖出此数填到前一个坑中
+            while (less < great && array[great] >= pivot) {
+                great --;
+            }
+
+            if(less < great) {
+                array[less] = array[great];
+                less ++;
+            }
+
+            // 由前向后找比他大的数，找到了也挖出此数填到前一个坑中
+            while (less < great && array[less] <= pivot) {
+                less++;
+            }
+
+            if(less < great) {
+                array[great] = array[less];
+                great --;
+            }
+        }
+
+        array[less] = pivot;
+        return less;
+    }
