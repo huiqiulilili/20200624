@@ -1,0 +1,35 @@
+ public boolean chkPalindrome(ListNode A) {
+        if (A == null) {
+            return true;
+        }
+
+        ListNode mid = getMid(A);
+        ListNode newList  = reverse(mid);
+        ListNode cur1 = A;
+        ListNode cur2 = newList;
+
+        while(cur1 != null && cur2 != null) {
+            if(cur1.val != cur2.val) {
+                return false;
+            }
+            cur1 = cur1.next;
+            cur2 = cur2.next;
+        }
+        return true;
+    }
+
+    private ListNode reverse(ListNode A) {
+        if (A == null) {
+            return null;
+        }
+
+        ListNode newList = null;
+
+        while (A != null) {
+            ListNode node = A.next;
+            A.next = newList;
+            newList = A;
+            A = node;
+        }
+        return newList;
+    }
