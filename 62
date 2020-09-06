@@ -1,0 +1,68 @@
+package 哈哈;
+
+
+// 顺时针打印数组
+// 确定一个数组需要俩个即可  左上角和右下角
+// 首先从左到右打印，不打印最后一个
+// 再从上往下打印，不打印最后一个
+// 。。。
+// 。。。
+// 如果只剩下一行的话，打印此行 startX == endX
+// 如果只剩一列的话，打印此列 startY == endY
+public class Test3 {
+    public int[] clockwisePrint(int[][] mat,int n,int m) {
+        int[] a = new int[n * m];
+        if(mat == null || mat.length == 0) {
+            return a;
+        }
+
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        int startX = 0;
+        int startY = 0;
+        int endX = n - 1;
+        int endY = m - 1;
+
+        while(startX <= endX && startY <= endY) {
+            // 如果只剩下最后一行
+            if(startX == endX) {
+                for ( ; j <= endY; j++,k++) {
+                    a[k] = mat[startX][j];
+                }
+                return a;
+            }
+
+            // 如果只剩下一列
+            if(startY == endY) {
+                for (;i <= endX;i++,k++) {
+                    a[k] = mat[i][endY];
+                }
+                return a;
+            }
+
+            for(;j < endY;j ++,k++) {
+                a[k] = mat[i][j];
+            }
+
+            for (;i < endX;i++,k++) {
+                a[k] = mat[i][j];
+            }
+
+            for (;j > startX;j--,k++) {
+                a[k] = mat[i][j];
+            }
+
+            for (;i > startY;i--,k++) {
+                a[k] = mat[i][j];
+            }
+            i++;
+            j++;
+            startX++;
+            startY++;
+            endX--;
+            endY--;
+        }
+        return a;
+    }
+}
